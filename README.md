@@ -58,6 +58,10 @@ This Go script helps you reset the trial period of **Navicat Premium** by cleani
    Done
    ```
 
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/ismailatak/navicat-premium-trial-reset-go/blob/main/LICENSE) file for details.
+
 ## Disclaimer
 
 This script is for educational purposes only. The author does not encourage or support software piracy or unauthorized usage of licensed software.
