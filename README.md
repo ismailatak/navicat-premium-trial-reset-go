@@ -41,7 +41,7 @@ This Go script helps you reset the trial period of **Navicat Premium** by cleani
 
 2. After this, you can run the script directly as:
    ```bash
-   navicat-reset
+   navicat-premium-trial-reset-go
    ```
 
 ## How It Works
