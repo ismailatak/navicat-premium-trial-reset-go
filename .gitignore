@@ -1,1 +1,22 @@
+# General
+*.a
+*.o
+*.cgo*.go
+*.cgo*.c
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+__debug_bin*
+Thumbs.db
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+.env
 
+# Self
+*.sh
