@@ -32,7 +32,7 @@ This Go script helps you reset the trial period of **Navicat Premium** by cleani
    ./navicat-reset
    ```
 
-### Option 2: Using `go install`
+### Option 2: Using `go install` [See also](https://go.dev/doc/tutorial/compile-install)
 
 1. Alternatively, you can install and run the script with Go's install command:
    ```bash
