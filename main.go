@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 	"os/exec"
@@ -8,6 +9,18 @@ import (
 )
 
 func main() {
+	// Version flag
+	versionFlag := flag.Bool("version", false, "Display the current version")
+	flag.Parse()
+
+	if *versionFlag {
+		printVersion()
+		os.Exit(0)
+	}
+
+	// Check for updates
+	ensureLatestVersion()
+
 	// Detect Navicat Premium version
 	cmd := exec.Command("defaults", "read", "/Applications/Navicat Premium.app/Contents/Info.plist")
 	output, err := cmd.Output()
