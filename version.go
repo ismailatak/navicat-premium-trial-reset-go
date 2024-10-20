@@ -47,7 +47,7 @@ func ensureLatestVersion() {
 
 	if latestVersion != currentVersion {
 		fmt.Printf("A new version (%s) is available. Please run:\n", latestVersion)
-		fmt.Println("  go install github.com/ismailatak/navicat-premium-trial-reset-go@latest")
+		fmt.Printf("  go install github.com/ismailatak/navicat-premium-trial-reset-go@%s", latestVersion)
 		os.Exit(0)
 	} else {
 		fmt.Println("You are running the latest version.")
