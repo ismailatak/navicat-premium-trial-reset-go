@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const currentVersion = "v0.0.8"
+const currentVersion = "v0.0.9"
 const repoURL = "https://api.github.com/repos/ismailatak/navicat-premium-trial-reset-go/releases/latest"
 
 func printVersion() {
@@ -47,7 +47,8 @@ func ensureLatestVersion() {
 
 	if latestVersion != currentVersion {
 		fmt.Printf("A new version (%s) is available. Please run:\n", latestVersion)
-		fmt.Printf("  go install github.com/ismailatak/navicat-premium-trial-reset-go@%s", latestVersion)
+		newGoInstall := fmt.Sprintf("  go install github.com/ismailatak/navicat-premium-trial-reset-go@%s", latestVersion)
+		fmt.Println(newGoInstall)
 		os.Exit(0)
 	}
 }
