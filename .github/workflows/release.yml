@@ -25,11 +25,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+        with:
+          core: true
+          cask: true
+          test-bot: true
+
       - name: Install Navicat Premium
         run: |
-          brew update
           brew config
-          brew install --cask navicat-premium --force --no-quarantine
+          brew install --cask navicat-premium
 
       - name: Test
         run: |
