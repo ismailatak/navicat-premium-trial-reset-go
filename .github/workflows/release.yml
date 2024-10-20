@@ -27,7 +27,8 @@ jobs:
 
       - name: Install Navicat Premium
         run: |
-          brew install --cask navicat-premium --no-quarantine
+          brew config
+          brew install --cask navicat-premium
 
       - name: Test
         run: |
