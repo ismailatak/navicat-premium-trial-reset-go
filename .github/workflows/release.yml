@@ -25,6 +25,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Navicat Premium
+        run: |
+          brew install --cask navicat-premium
+
       - name: Test
         run: |
           go run *.go
