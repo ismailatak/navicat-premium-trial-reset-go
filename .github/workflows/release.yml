@@ -24,3 +24,7 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Test
+        run: |
+          go run *.go
