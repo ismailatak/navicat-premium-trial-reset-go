@@ -25,9 +25,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup local taps
+        run: |
+          mkdir -p taps
+          curl -o taps/navicat-premium.rb https://raw.githubusercontent.com/Homebrew/homebrew-cask/HEAD/Casks/n/navicat-premium.rb
+          sed -i '' '/zap trash/,/]/d' taps/navicat-premium.rb
+          sed -i '' '/^$/d' taps/navicat-premium.rb
+
       - name: Install Navicat Premium
         run: |
-          brew install --cask navicat-premium
+          brew install --cask $(pwd)/taps/navicat-premium.rb
 
       - name: Test
         run: |
