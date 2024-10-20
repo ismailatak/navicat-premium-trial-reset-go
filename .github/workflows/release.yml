@@ -27,6 +27,7 @@ jobs:
 
       - name: Install Navicat Premium
         run: |
+          brew update
           brew config
           brew install --cask navicat-premium
 
