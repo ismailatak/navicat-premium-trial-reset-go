@@ -14,6 +14,9 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
+    env:
+      HOMEBREW_NO_INSTALL_FROM_API: 1
+
     steps:
       - name: Install Go ${{ matrix.go-version }}
         uses: actions/setup-go@v5
