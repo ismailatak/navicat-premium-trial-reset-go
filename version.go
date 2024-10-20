@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const currentVersion = "v1.0.0"
+const currentVersion = "v0.0.6"
 const repoURL = "https://api.github.com/repos/ismailatak/navicat-premium-trial-reset-go/releases/latest"
 
 func printVersion() {
