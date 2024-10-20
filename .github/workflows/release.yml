@@ -26,9 +26,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Navicat Premium
-        shell: pwsh
         run: |
-          brew install --cask navicat-premium
+          brew install --cask navicat-premium --no-quarantine
 
       - name: Test
         run: |
