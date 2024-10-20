@@ -34,6 +34,8 @@ jobs:
           brew config
           brew install --cask navicat-premium
           brew info navicat-premium
+          brew list
+          brew search navicat-premium
 
       - name: Test
         run: |
