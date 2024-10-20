@@ -86,5 +86,5 @@ func main() {
 		exec.Command("rm", os.Getenv("HOME")+"/Library/Application Support/PremiumSoft CyberTech/Navicat CC/Navicat Premium/."+hash2).Run()
 	}
 
-	fmt.Println("Done!")
+	fmt.Println("Done")
 }
