@@ -14,10 +14,6 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
-    env:
-      HOMEBREW_NO_INSTALL_FROM_API: 1
-      HOMEBREW_CASK_OPTS: '--no-quarantine'
-
     steps:
       - name: Install Go ${{ matrix.go-version }}
         uses: actions/setup-go@v5
@@ -31,11 +27,7 @@ jobs:
 
       - name: Install Navicat Premium
         run: |
-          brew config
           brew install --cask navicat-premium
-          brew info navicat-premium
-          brew list
-          brew search navicat-premium
 
       - name: Test
         run: |
