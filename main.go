@@ -53,6 +53,18 @@ func main() {
 		os.Exit(1)
 	}
 
+	// File exists
+	exists := exec.Command("ls", "-l", "-a", file)
+	output, err = exists.Output()
+	if err != nil {
+		fmt.Println("Error reading directory:", err)
+	}
+	fmt.Println("byte output: ", output)
+	if len(output) == 0 {
+		fmt.Printf("Plist file not found: %s\n", file)
+	}
+	fmt.Println("string output: ", string(output))
+
 	fmt.Println("Resetting trial time...")
 
 	// Delete hash from plist file
