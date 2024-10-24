@@ -41,5 +41,3 @@ jobs:
       - name: Test
         run: |
           go run *.go
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
