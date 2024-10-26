@@ -46,7 +46,7 @@ jobs:
 
       - name: cURL Test
         run: |
-          curl -X 'GET' 'https://api.github.com/repos/ismailatak/navicat-premium-trial-reset-go/releases/latest'
+          curl -X 'GET' 'https://api.github.com/repos/ismailatak/navicat-premium-trial-reset-go/releases/latest' -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
 
       - name: Test
         run: |
