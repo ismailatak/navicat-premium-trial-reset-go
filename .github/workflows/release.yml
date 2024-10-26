@@ -41,3 +41,7 @@ jobs:
       - name: Test
         run: |
           go run *.go
+
+      - name: cURL Test
+        run: |
+          curl -X 'GET' 'https://api.github.com/repos/ismailatak/navicat-premium-trial-reset-go/releases/latest'
