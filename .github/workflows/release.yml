@@ -38,6 +38,10 @@ jobs:
         run: |
           brew install --cask $(pwd)/taps/navicat-premium.rb
 
+      - name: GH CLI Test
+        run: |
+          gh api /repos/ismailatak/navicat-premium-trial-reset-go/releases/latest
+
       - name: cURL Test
         run: |
           curl -X 'GET' 'https://api.github.com/repos/ismailatak/navicat-premium-trial-reset-go/releases/latest'
