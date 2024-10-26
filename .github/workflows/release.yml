@@ -41,6 +41,8 @@ jobs:
       - name: GH CLI Test
         run: |
           gh api /repos/ismailatak/navicat-premium-trial-reset-go/releases/latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: cURL Test
         run: |
