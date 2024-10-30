@@ -17,6 +17,9 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      - name: Set the GITHUB_TOKEN environment variable for the Go code
+        run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+
       - name: Install Go ${{ matrix.go-version }}
         uses: actions/setup-go@v5
         with:
