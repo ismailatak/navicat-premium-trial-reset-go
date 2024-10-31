@@ -53,6 +53,9 @@ jobs:
       - name: Open Navicat Premium
         run: open -a /Applications/Navicat\ Premium.app
 
+      - name: Wait for Navicat Premium to start
+        run: sleep 10
+
       - name: Fourth Control - All list of ~/Library/Preferences
         run: sudo ls -la ~/Library/Preferences
 
