@@ -1,18 +1,11 @@
 name: Test
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
-    branches:
-      - 'gh_actions'
   workflow_run:
     workflows:
       - "Navicat Premium"
     types:
       - completed
-    branches:
-      - 'gh_actions'
 
 jobs:
   unit:
