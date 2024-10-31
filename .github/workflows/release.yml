@@ -35,14 +35,10 @@ jobs:
           sed -i '' '/^$/d' taps/navicat-premium.rb
 
       - name: Install Navicat Premium
-        run: |
-          brew install --cask $(pwd)/taps/navicat-premium.rb
+        run: brew install --cask $(pwd)/taps/navicat-premium.rb
 
       - name: Open Navicat Premium
-        run: open -a /Applications/Navicat\ Premium.app
-
-      - name: Wait for Navicat Premium to start
-        run: sleep 10
+        run: open -a /Applications/Navicat\ Premium.app && sleep 3
 
       - name: Is Navicat Premium running?
         run: |
@@ -50,7 +46,6 @@ jobs:
           ps aux | grep Navicat
 
       - name: Test
-        run: |
-          go run *.go
+        run: go run *.go
         env:
-          ISO_TK: from_github_actions
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -9,10 +9,6 @@ import (
 )
 
 func main() {
-	// ISO_TK
-	isotk := os.Getenv("ISO_TK")
-	fmt.Println("ISO_TK: ", isotk)
-
 	// Version flag
 	versionFlag := flag.Bool("version", false, "Display the current version")
 	flag.Parse()
@@ -57,27 +53,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	// All list of /Library/Preferences
-	cmd = exec.Command("ls", "-l", "-a", os.Getenv("HOME")+"/Library/Preferences")
-	output, err = cmd.Output()
-	if err != nil {
-		fmt.Println("Error reading directory:", err)
-		os.Exit(1)
-	}
-	fmt.Println("string output: ", string(output))
-
 	// File exists
 	exists := exec.Command("ls", "-l", "-a", file)
 	output, err = exists.Output()
-	if err != nil {
-		fmt.Println("Error reading directory:", err)
+	if err != nil || len(output) == 0 {
+		fmt.Println("File does not exist or is empty:", err)
 		os.Exit(1)
 	}
-	if len(output) == 0 {
-		fmt.Printf("Plist file not found: %s\n", file)
-		os.Exit(1)
-	}
-	fmt.Println("string output: ", string(output))
 
 	fmt.Println("Resetting trial time...")
 
@@ -85,8 +67,7 @@ func main() {
 	cmd = exec.Command("defaults", "read", file)
 	output, err = cmd.Output()
 	if err != nil {
-		fmt.Printf("For file: %s\n", file)
-		fmt.Println("Error reading plist file:", err)
+		fmt.Printf("Error reading plist file (%s): %+v\n", file, err)
 		os.Exit(1)
 	}
 
@@ -107,7 +88,7 @@ func main() {
 	cmd = exec.Command("ls", "-a", appSupport)
 	output, err = cmd.Output()
 	if err != nil {
-		fmt.Println("Error reading directory:", err)
+		fmt.Println("Error reading hidden file:", err)
 		os.Exit(1)
 	}
 
