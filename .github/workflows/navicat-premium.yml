@@ -1,32 +1,17 @@
-name: Release
+name: Navicat Premium
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
-    branches:
-      - 'gh_actions'
 
 jobs:
-  release:
+  install:
     strategy:
       matrix:
         os: [macos-latest]
-        go-version: [1.23.x]
 
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Install Go ${{ matrix.go-version }}
-        uses: actions/setup-go@v5
-        with:
-          go-version: ${{ matrix.go-version }}
-          check-latest: true
-          cache: false
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Setup local taps
         run: |
           mkdir -p taps
@@ -47,8 +32,3 @@ jobs:
         run: |
           pgrep -fl Navicat
           ps aux | grep Navicat
-
-      - name: Test
-        run: go run *.go
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
