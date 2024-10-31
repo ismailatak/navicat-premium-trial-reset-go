@@ -2,6 +2,10 @@ name: Navicat Premium
 
 on:
   push:
+    tags:
+      - 'v*.*.*'
+    branches:
+      - 'gh_actions'
 
 jobs:
   install:
