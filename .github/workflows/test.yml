@@ -6,6 +6,8 @@ on:
       - "Navicat Premium"
     types:
       - completed
+    branches:
+      - 'gh_actions'
 
 jobs:
   unit:
