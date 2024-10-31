@@ -36,7 +36,7 @@ jobs:
 
       - name: Install Navicat Premium
         run: |
-          brew reinstall --cask $(pwd)/taps/navicat-premium.rb
+          brew reinstall --cask $(pwd)/taps/navicat-premium.rb --no-quarantine
           ls -la /Applications | grep Navicat
           defaults read /Applications/Navicat\ Premium.app/Contents/Info | grep Version
 
