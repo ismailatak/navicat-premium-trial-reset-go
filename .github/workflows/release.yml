@@ -53,6 +53,15 @@ jobs:
       - name: Fourth Control - All list of /Applications
         run: sudo ls -la /Applications
 
+      - name: Open Navicat Premium
+        run: open -a /Applications/Navicat\ Premium.app
+
+      - name: Is Navicat Premium running?
+        run: ps aux | grep Navicat
+
+      - name: Is Navicat Premium running? (2)
+        run: pgrep -fl Navicat
+
       - name: Test
         run: |
           go run *.go
