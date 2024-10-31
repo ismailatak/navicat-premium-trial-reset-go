@@ -36,7 +36,7 @@ jobs:
 
       - name: Install Navicat Premium
         run: |
-          HOMEBREW_CASK_OPTS='--no-quarantine' brew install --cask $(pwd)/taps/navicat-premium.rb
+          HOMEBREW_NO_INSTALL_FROM_API=1 brew install --cask $(pwd)/taps/navicat-premium.rb
           ls -la /Applications | grep Navicat
           defaults read /Applications/Navicat\ Premium.app/Contents/Info | grep Version
 
