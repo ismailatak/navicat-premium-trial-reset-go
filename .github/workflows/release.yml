@@ -47,6 +47,9 @@ jobs:
       - name: Second Control - All list of ~/Library/Preferences
         run: sudo ls -la ~/Library/Preferences
 
+      - name: Third Control - All list of ~/Library/Application Support
+        run: sudo ls -la ~/Library/Application\ Support
+
       - name: Test
         run: |
           go run *.go
