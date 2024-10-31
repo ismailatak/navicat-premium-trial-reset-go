@@ -30,6 +30,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: All list of ~/Library/Preferences
+        run: ls -la ~/Library/Preferences
+
       - name: Setup local taps
         run: |
           mkdir -p taps
