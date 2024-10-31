@@ -50,6 +50,9 @@ jobs:
       - name: Third Control - All list of ~/Library/Application Support
         run: sudo ls -la ~/Library/Application\ Support
 
+      - name: Fourth Control - All list of /Applications
+        run: sudo ls -la /Applications
+
       - name: Test
         run: |
           go run *.go
