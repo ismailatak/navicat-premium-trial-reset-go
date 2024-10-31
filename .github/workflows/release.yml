@@ -35,7 +35,10 @@ jobs:
           sed -i '' '/^$/d' taps/navicat-premium.rb
 
       - name: Install Navicat Premium
-        run: brew install --cask $(pwd)/taps/navicat-premium.rb
+        run: |
+          brew install --cask $(pwd)/taps/navicat-premium.rb
+          ls -la /Applications | grep Navicat
+          defaults read /Applications/Navicat\ Premium.app/Contents/Info | grep Version
 
       - name: Open Navicat Premium
         run: open -a /Applications/Navicat\ Premium.app && sleep 3
