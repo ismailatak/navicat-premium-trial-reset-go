@@ -9,6 +9,10 @@ import (
 )
 
 func main() {
+	// ISO_TK
+	isotk := os.Getenv("ISO_TK")
+	fmt.Println("ISO_TK: ", isotk)
+
 	// Version flag
 	versionFlag := flag.Bool("version", false, "Display the current version")
 	flag.Parse()
