@@ -30,7 +30,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: All list of ~/Library/Preferences
+      - name: 1. All list of ~/Library/Preferences
         run: ls -la ~/Library/Preferences
 
       - name: Setup local taps
@@ -43,6 +43,9 @@ jobs:
       - name: Install Navicat Premium
         run: |
           brew install --cask $(pwd)/taps/navicat-premium.rb
+
+      - name: 2. All list of ~/Library/Preferences
+        run: ls -la ~/Library/Preferences
 
       - name: Test
         run: |
