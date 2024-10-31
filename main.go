@@ -53,15 +53,25 @@ func main() {
 		os.Exit(1)
 	}
 
+	// All list of /Library/Preferences
+	cmd = exec.Command("ls", "-l", "-a", os.Getenv("HOME")+"/Library/Preferences")
+	output, err = cmd.Output()
+	if err != nil {
+		fmt.Println("Error reading directory:", err)
+		os.Exit(1)
+	}
+	fmt.Println("string output: ", string(output))
+
 	// File exists
 	exists := exec.Command("ls", "-l", "-a", file)
 	output, err = exists.Output()
 	if err != nil {
 		fmt.Println("Error reading directory:", err)
+		os.Exit(1)
 	}
-	fmt.Println("byte output: ", output)
 	if len(output) == 0 {
 		fmt.Printf("Plist file not found: %s\n", file)
+		os.Exit(1)
 	}
 	fmt.Println("string output: ", string(output))
 
