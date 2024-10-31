@@ -30,9 +30,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: First Control - All list of ~/Library/Preferences
-        run: sudo ls -la ~/Library/Preferences
-
       - name: Setup local taps
         run: |
           mkdir -p taps
@@ -44,23 +41,31 @@ jobs:
         run: |
           brew install --cask $(pwd)/taps/navicat-premium.rb
 
-      - name: Second Control - All list of ~/Library/Preferences
+      - name: First Control - All list of ~/Library/Preferences
         run: sudo ls -la ~/Library/Preferences
 
-      - name: Third Control - All list of ~/Library/Application Support
+      - name: Second Control - All list of ~/Library/Application Support
         run: sudo ls -la ~/Library/Application\ Support
 
-      - name: Fourth Control - All list of /Applications
+      - name: Third Control - All list of /Applications
         run: sudo ls -la /Applications
 
       - name: Open Navicat Premium
         run: open -a /Applications/Navicat\ Premium.app
 
-      - name: Is Navicat Premium running?
-        run: ps aux | grep Navicat
+      - name: Fourth Control - All list of ~/Library/Preferences
+        run: sudo ls -la ~/Library/Preferences
 
-      - name: Is Navicat Premium running? (2)
-        run: pgrep -fl Navicat
+      - name: Fifth Control - All list of ~/Library/Application Support
+        run: sudo ls -la ~/Library/Application\ Support
+
+      - name: Sixth Control - All list of /Applications
+        run: sudo ls -la /Applications
+
+      - name: Is Navicat Premium running?
+        run: |
+          pgrep -fl Navicat
+          ps aux | grep Navicat
 
       - name: Test
         run: |
