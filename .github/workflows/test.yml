@@ -1,11 +1,11 @@
 name: Test
 
 on:
-  workflow_run:
-    workflows:
-      - "Navicat Premium"
-    types:
-      - completed
+  push:
+    tags:
+      - 'v*.*.*'
+    branches:
+      - 'gh_actions'
 
 jobs:
   unit:
@@ -17,6 +17,9 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      - name: Requirements
+        uses: ./.github/workflows/navicat-premium.yml
+
       - name: Install Go ${{ matrix.go-version }}
         uses: actions/setup-go@v5
         with:
