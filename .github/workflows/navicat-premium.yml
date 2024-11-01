@@ -1,7 +1,11 @@
 name: Navicat Premium
 
 on:
-  workflow_call:
+  push:
+    tags:
+      - 'v*.*.*'
+    branches:
+      - 'gh_actions'
 
 jobs:
   install:

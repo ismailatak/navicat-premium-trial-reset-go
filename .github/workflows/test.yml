@@ -1,16 +1,13 @@
 name: Test
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
-    branches:
-      - 'gh_actions'
+  workflow_run:
+    workflows:
+      - "Navicat Premium"
+    types:
+      - completed
 
 jobs:
-  requirements:
-    uses: ./.github/workflows/navicat-premium.yml
-
   unit:
     strategy:
       matrix:
@@ -18,8 +15,6 @@ jobs:
         go-version: [1.23.x]
 
     runs-on: ${{ matrix.os }}
-
-    needs: requirements
 
     steps:
       - name: All list of /Applications
