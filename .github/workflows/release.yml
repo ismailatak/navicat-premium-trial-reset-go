@@ -1,0 +1,22 @@
+name: Releases
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_run:
+    workflows:
+      - "Test"
+    types:
+      - completed
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2

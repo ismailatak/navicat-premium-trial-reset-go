@@ -2,10 +2,7 @@ name: Test
 
 on:
   push:
-    tags:
-      - "v*.*.*"
-    branches:
-      - "gh_actions"
+  pull_request:
 
 jobs:
   unit:
