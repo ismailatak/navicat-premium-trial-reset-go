@@ -17,9 +17,6 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Requirements
-        uses: ./.github/workflows/navicat-premium.yml
-
       - name: Install Go ${{ matrix.go-version }}
         uses: actions/setup-go@v5
         with:
@@ -29,6 +26,9 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Requirements
+        uses: ./.github/workflows/navicat-premium.yml
 
       - name: Test
         run: go run *.go
