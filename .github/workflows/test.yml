@@ -22,6 +22,20 @@ jobs:
     needs: requirements
 
     steps:
+      - name: All list of /Applications
+        run: ls -la /Applications
+
+      - name: All list of ~/Library/Preferences
+        run: ls -la ~/Library/Preferences
+
+      - name: All list of ~/Library/Application Support
+        run: ls -la ~/Library/Application\ Support
+
+      - name: Is Navicat Premium running?
+        run: |
+          pgrep -fl Navicat
+          ps aux | grep Navicat
+
       - name: Install Go ${{ matrix.go-version }}
         uses: actions/setup-go@v5
         with:
