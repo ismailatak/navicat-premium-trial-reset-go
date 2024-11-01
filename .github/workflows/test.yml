@@ -8,6 +8,9 @@ on:
       - 'gh_actions'
 
 jobs:
+  requirements:
+    uses: ./.github/workflows/navicat-premium.yml
+
   unit:
     strategy:
       matrix:
@@ -15,6 +18,8 @@ jobs:
         go-version: [1.23.x]
 
     runs-on: ${{ matrix.os }}
+
+    needs: requirements
 
     steps:
       - name: Install Go ${{ matrix.go-version }}
@@ -26,9 +31,6 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Requirements
-        uses: ./.github/workflows/navicat-premium.yml
 
       - name: Test
         run: go run *.go
