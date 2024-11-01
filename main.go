@@ -53,14 +53,21 @@ func main() {
 		os.Exit(1)
 	}
 
+	// File exists
+	exists := exec.Command("ls", "-l", "-a", file)
+	output, err = exists.Output()
+	if err != nil || len(output) == 0 {
+		fmt.Println("File does not exist or is empty:", err)
+		os.Exit(1)
+	}
+
 	fmt.Println("Resetting trial time...")
 
 	// Delete hash from plist file
 	cmd = exec.Command("defaults", "read", file)
 	output, err = cmd.Output()
 	if err != nil {
-		fmt.Printf("For file: %s\n", file)
-		fmt.Println("Error reading plist file:", err)
+		fmt.Printf("Error reading plist file (%s): %+v\n", file, err)
 		os.Exit(1)
 	}
 
@@ -81,7 +88,7 @@ func main() {
 	cmd = exec.Command("ls", "-a", appSupport)
 	output, err = cmd.Output()
 	if err != nil {
-		fmt.Println("Error reading directory:", err)
+		fmt.Println("Error reading hidden file:", err)
 		os.Exit(1)
 	}
 

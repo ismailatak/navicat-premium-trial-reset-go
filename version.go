@@ -18,7 +18,17 @@ func printVersion() {
 // Fetch the latest version from GitHub
 func checkForUpdate() (string, error) {
 	client := &http.Client{Timeout: 10 * time.Second}
-	resp, err := client.Get(repoURL)
+	req, err := http.NewRequest("GET", repoURL, nil)
+	if err != nil {
+		return "", err
+	}
+
+	token := os.Getenv("GITHUB_TOKEN")
+	if token != "" { // 403 issue: For higher rate limits in GitHub Actions. See also (release.yml)
+		req.Header.Set("Authorization", "Bearer "+token)
+	}
+
+	resp, err := client.Do(req)
 	if err != nil {
 		return "", err
 	}

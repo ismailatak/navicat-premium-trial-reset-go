@@ -1,34 +1,22 @@
-name: Release
+name: Releases
 
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - "v*.*.*"
+  workflow_run:
+    workflows:
+      - "Test"
+    types:
+      - completed
 
 jobs:
-  release:
-    strategy:
-      matrix:
-        os: [macos-latest]
-        go-version: [1.23.x]
-
-    runs-on: ${{ matrix.os }}
+  publish:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Install Go ${{ matrix.go-version }}
-        uses: actions/setup-go@v5
-        with:
-          go-version: ${{ matrix.go-version }}
-          check-latest: true
-          cache: false
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Navicat Premium
-        run: |
-          brew install --cask navicat-premium
-
-      - name: Test
-        run: |
-          go run *.go
+      - name: Create release
+        uses: softprops/action-gh-release@v2

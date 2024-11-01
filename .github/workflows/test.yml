@@ -1,0 +1,41 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "README.md"
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - "README.md"
+
+jobs:
+  unit:
+    strategy:
+      matrix:
+        os: [macos-latest]
+        go-version: [1.23.x]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Install Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+          check-latest: true
+          cache: false
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Required software for Navicat Premium
+        uses: ./.github/actions/navicat-premium
+
+      - name: Test
+        run: go run *.go
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
