@@ -17,6 +17,16 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      - name: Install Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+          check-latest: true
+          cache: false
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Required software for Navicat Premium
         uses: ./.github/actions/navicat-premium
 
@@ -33,16 +43,6 @@ jobs:
         run: |
           pgrep -fl Navicat
           ps aux | grep Navicat
-
-      - name: Install Go ${{ matrix.go-version }}
-        uses: actions/setup-go@v5
-        with:
-          go-version: ${{ matrix.go-version }}
-          check-latest: true
-          cache: false
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
       - name: Test
         run: go run *.go
