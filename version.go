@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const currentVersion = "v0.0.9"
+const currentVersion = "v0.0.0"
 const repoURL = "https://api.github.com/repos/ismailatak/navicat-premium-trial-reset-go/releases/latest"
 
 func printVersion() {
@@ -24,7 +24,7 @@ func checkForUpdate() (string, error) {
 	}
 
 	token := os.Getenv("GITHUB_TOKEN")
-	if token != "" { // 403 issue: For higher rate limits in GitHub Actions. See also (release.yml)
+	if token != "" { // 403 issue: Token required for higher rate limit on requests from GitHub Actions.
 		req.Header.Set("Authorization", "Bearer "+token)
 	}
 
