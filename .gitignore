@@ -20,4 +20,5 @@ node_modules/
 
 # Self
 tmp/
-*.sh
+dist/
+cosign.key
