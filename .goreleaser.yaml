@@ -1,0 +1,53 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+
+universal_binaries:
+  - replace: false
+    name_template: "{{.ProjectName}}-universal"
+
+archives:
+  - format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Os }}_
+      {{- .Arch }}
+    files:
+      - LICENSE
+      - VERSION
+
+checksum:
+  name_template: "checksums.txt"
+
+report_sizes: true
+
+signs:
+  - cmd: cosign
+    artifacts: checksum
+    stdin: "{{ .Env.COSIGN_PWD }}"
+    signature: ${artifact}.sig
+    args:
+      - "sign-blob"
+      - "--key=cosign.key"
+      - "--output-signature=${signature}"
+      - "${artifact}"
+      - "--yes"
+
+release:
+  draft: true
+  replace_existing_draft: false
+  use_existing_draft: true
+
+changelog:
+  disable: true
