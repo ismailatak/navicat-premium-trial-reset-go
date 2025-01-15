@@ -1,24 +1,18 @@
-name: Release
+name: Release PLZ
 
 on:
   push:
-    tags:
-      - "v*"
     branches:
-      - "release/*"
+      - main
 
 concurrency:
-  group: release-${{ github.ref_name }}
+  group: release-plz
 
 env:
-  DRY_RUN: ${{ startsWith(github.event.ref, 'refs/tags/v') && '0' || '1' }}
   GITHUB_TOKEN: ${{ secrets.ISO_GH_CLI_TOKEN || secrets.GITHUB_TOKEN }}
-  GH_TOKEN: ${{ secrets.ISO_GH_CLI_TOKEN || secrets.GITHUB_TOKEN }}
-  COSIGN_KEY: ${{ secrets.COSIGN_KEY }}
-  COSIGN_PWD: ${{ secrets.COSIGN_PWD }}
 
 jobs:
-  release:
+  release-plz:
     name: ${{ matrix.name }}
     timeout-minutes: 10
     runs-on: ${{ matrix.runs-on }}
@@ -26,13 +20,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: release (Ubuntu Latest)
+          - name: release-plz (Ubuntu Latest)
             runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 0
+          token: ${{ secrets.ISO_GH_CLI_TOKEN }}
 
       - name: Install Go
         uses: actions/setup-go@v5.2.0
@@ -55,13 +50,5 @@ jobs:
         with:
           tool: git-cliff
 
-      - name: Install cosign
-        uses: sigstore/cosign-installer@v3.7.0
-
-      - name: Install goreleaser
-        uses: goreleaser/goreleaser-action@v6.1.0
-        with:
-          install-only: true
-
-      - name: Run the release script
-        run: scripts/release.sh
+      - name: Run the release-plz script
+        run: scripts/release-plz.sh
