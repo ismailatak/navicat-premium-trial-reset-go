@@ -20,10 +20,7 @@ if [[ $cur_version == "" ]]; then
     exit 1
   fi
 else
-  if [[ "$(gh release view --json tagName 2>&1)" == "release not found" ]]; then
-    echo "This condition is invalid. It should not logically come here. Please check!"
-    exit 1
-  elif ! gh release view --json tagName | jq -r '.tagName' | grep -q "$cur_version"; then
+  if ! gh release view --json tagName | jq -r '.tagName' | grep -q "$cur_version"; then
     echo "Releasing $cur_version"
     changelog="$(git cliff --tag "$cur_version" --strip all --unreleased)"
     changelog="$(echo "$changelog" | tail -n +3)"
