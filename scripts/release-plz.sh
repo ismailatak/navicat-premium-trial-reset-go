@@ -11,18 +11,31 @@ cur_version="$(cat VERSION | head -n 1)"
 echo "::endgroup::"
 
 echo "::group::Check if the release exists"
-if ! gh release view --json tagName | jq -r '.tagName' | grep -q "$cur_version"; then
-  echo "Releasing $cur_version"
-  changelog="$(git cliff --tag "$cur_version" --strip all --unreleased)"
-  changelog="$(echo "$changelog" | tail -n +3)"
-  git tag "$cur_version" -s -m "$changelog"
-  git push --tags
-  gh release create "$cur_version" --title "$cur_version" --notes "$changelog" --draft
-  exit 0
+if [[ $cur_version == "" ]]; then
+  if [[ "$(gh release view --json tagName 2>&1)" == "release not found" ]]; then
+    echo "There is no release yet"
+  else
+    echo "There is a release but no VERSION file"
+    echo "Please create a VERSION file with the current version"
+    exit 1
+  fi
+else
+  if [[ "$(gh release view --json tagName 2>&1)" == "release not found" ]]; then
+    echo "This condition is invalid. It should not logically come here. Please check!"
+    exit 1
+  elif ! gh release view --json tagName | jq -r '.tagName' | grep -q "$cur_version"; then
+    echo "Releasing $cur_version"
+    changelog="$(git cliff --tag "$cur_version" --strip all --unreleased)"
+    changelog="$(echo "$changelog" | tail -n +3)"
+    git tag "$cur_version" -s -m "$changelog"
+    git push --tags
+    gh release create "$cur_version" --title "$cur_version" --notes "$changelog" --draft
+    exit 0
+  fi
 fi
 echo "::endgroup::"
 
-echo "::group::Release already exists"
+echo "::group::Check if the release is already in a PR"
 bump="$(git cliff --bumped-version)"
 echo $bump >VERSION
 echo time $(date +%FT%TZ) >>VERSION
