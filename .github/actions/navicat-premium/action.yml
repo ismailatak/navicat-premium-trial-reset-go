@@ -20,7 +20,7 @@ runs:
       shell: bash
 
     - name: Open Navicat Premium
-      run: open -a /Applications/Navicat\ Premium.app && sleep 10
+      run: open -a /Applications/Navicat\ Premium.app && sleep 3
       shell: bash
 
     - name: Is Navicat Premium running?
