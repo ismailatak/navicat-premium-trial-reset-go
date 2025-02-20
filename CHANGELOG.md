@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.2](https://github.com/ismailatak/navicat-premium-trial-reset-go/compare/v0.1.1..v0.1.2) - 2025-02-20
+
+### 📦️ Dependency Updates
+
+- upgrade go version by [@ismailatak](https://github.com/ismailatak) in [07803c1](https://github.com/ismailatak/navicat-premium-trial-reset-go/commit/07803c163bcffb6bea57d1eb8e5d10918e628da4)
+
 ## [0.1.1](https://github.com/ismailatak/navicat-premium-trial-reset-go/compare/v0.1.0..v0.1.1) - 2025-01-17
 
 ### 📦️ Dependency Updates
