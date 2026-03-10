@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const currentVersion = "v0.1.2"
+const currentVersion = "v0.2.0"
 const releasesURL = "https://api.github.com/repos/ismailatak/navicat-premium-trial-reset-go/releases"
 const releaseLatestURL = releasesURL + "/latest"
 
