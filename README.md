@@ -47,14 +47,16 @@ This Go script helps you reset the trial period of **Navicat Premium** by cleani
 ## How It Works
 - The script reads the Info.plist file of the installed Navicat Premium app to detect the current version.
 - Based on the version, it targets the correct plist file in ~/Library/Preferences/.
-- It also scans and deletes hidden license files from ~/Library/Application Support/PremiumSoft CyberTech/Navicat CC/Navicat Premium/.
+- It scans and deletes hidden license files from ~/Library/Application Support/PremiumSoft CyberTech/Navicat CC/Navicat Premium/.
+- It removes related entries from the macOS Keychain, which may store cached trial or license validation data.
 
 ## Example Output
    ```bash
-   Detected Navicat Premium version 17
+   Detected Navicat Premium version 17.3.9
    Resetting trial time...
-   deleting [HASH] array...
-   deleting [HASH] folder...
+   deleting preferences .plist hash: [HASH]
+   deleting application support hash: [HASH]
+   deleting keychains hash: [HASH]
    Done
    ```
 

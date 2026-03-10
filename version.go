@@ -16,6 +16,33 @@ func printVersion() {
 	fmt.Println("Navicat Premium Trial Reset version", currentVersion)
 }
 
+// Compare local version with the latest version
+func ensureLatestVersion() {
+	releases, err := fetchReleases()
+	if err != nil {
+		fmt.Println("Error fetching releases:", err)
+		os.Exit(1)
+	}
+
+	if len(releases) == 0 {
+		fmt.Println("No releases found")
+		os.Exit(0)
+	}
+
+	latestVersion, err := checkForUpdate()
+	if err != nil {
+		fmt.Println("Error checking for updates:", err)
+		os.Exit(1)
+	}
+
+	if latestVersion != currentVersion {
+		fmt.Printf("A new version (%s) is available. Please run:\n", latestVersion)
+		newGoInstall := fmt.Sprintf("  go install github.com/ismailatak/navicat-premium-trial-reset-go@%s", latestVersion)
+		fmt.Println(newGoInstall)
+		os.Exit(0)
+	}
+}
+
 // Fetch the releases from GitHub
 func fetchReleases() ([]map[string]interface{}, error) {
 	client := &http.Client{Timeout: 10 * time.Second}
@@ -77,31 +104,4 @@ func checkForUpdate() (string, error) {
 
 	latestVersion := result["tag_name"].(string)
 	return latestVersion, nil
-}
-
-// Compare local version with the latest version
-func ensureLatestVersion() {
-	releases, err := fetchReleases()
-	if err != nil {
-		fmt.Println("Error fetching releases:", err)
-		os.Exit(1)
-	}
-
-	if len(releases) == 0 {
-		fmt.Println("No releases found")
-		os.Exit(0)
-	}
-
-	latestVersion, err := checkForUpdate()
-	if err != nil {
-		fmt.Println("Error checking for updates:", err)
-		os.Exit(1)
-	}
-
-	if latestVersion != currentVersion {
-		fmt.Printf("A new version (%s) is available. Please run:\n", latestVersion)
-		newGoInstall := fmt.Sprintf("  go install github.com/ismailatak/navicat-premium-trial-reset-go@%s", latestVersion)
-		fmt.Println(newGoInstall)
-		os.Exit(0)
-	}
 }
