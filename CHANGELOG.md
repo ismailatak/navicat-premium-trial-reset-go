@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.0](https://github.com/ismailatak/navicat-premium-trial-reset-go/compare/v0.1.2..v0.2.0) - 2026-03-10
+
+### 🚀 Features
+
+- added keychain inspection and deletion by [@ismailatak](https://github.com/ismailatak) in [a78836f](https://github.com/ismailatak/navicat-premium-trial-reset-go/commit/a78836fbd3977b303eb04c54bae2afbe7d492290)
+
 ## [0.1.2](https://github.com/ismailatak/navicat-premium-trial-reset-go/compare/v0.1.1..v0.1.2) - 2025-02-20
 
 ### 📦️ Dependency Updates
