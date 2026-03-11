@@ -23,7 +23,7 @@ fi
 echo "::endgroup::"
 
 echo "::group::Verify checksum with cosign"
-output=$(cosign verify-blob --key cosign.pub --signature dist/checksums.txt.sig dist/checksums.txt 2>&1)
+output=$(cosign verify-blob --key cosign.pub --bundle dist/checksums.txt.sigstore.json dist/checksums.txt 2>&1)
 echo "$output"
 if [ "$output" != "Verified OK" ]; then
   echo "Checksum verification failed"

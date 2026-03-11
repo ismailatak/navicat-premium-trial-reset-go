@@ -18,7 +18,7 @@ universal_binaries:
     name_template: "{{.ProjectName}}-universal"
 
 archives:
-  - format: tar.gz
+  - formats: ["tar.gz"]
     name_template: >-
       {{ .ProjectName }}_
       {{- .Os }}_
@@ -36,11 +36,11 @@ signs:
   - cmd: cosign
     artifacts: checksum
     stdin: "{{ .Env.COSIGN_PWD }}"
-    signature: ${artifact}.sig
+    signature: ${artifact}.sigstore.json
     args:
       - "sign-blob"
       - "--key=cosign.key"
-      - "--output-signature=${signature}"
+      - "--bundle=${signature}"
       - "${artifact}"
       - "--yes"
 
