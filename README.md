@@ -60,6 +60,20 @@ This Go script helps you reset the trial period of **Navicat Premium** by cleani
    Done
    ```
 
+## GitHub API Rate Limit
+   This application may perform requests to the GitHub API. GitHub enforces hourly rate limits, and if the limit is exceeded you may receive a **403 Forbidden** response.
+
+   To avoid hitting the default rate limit, you can run the application with a [GitHub Personal Access Token](https://github.com/settings/tokens).
+
+### Example
+   ```bash
+   GITHUB_TOKEN=your_token_here app-name
+   ```
+
+   Replace `your_token_here` with your [GitHub Personal Access Token](https://github.com/settings/tokens).
+   
+   Using a token increases the allowed API request limit and helps prevent rate-limit errors during execution.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/ismailatak/navicat-premium-trial-reset-go/blob/main/LICENSE) file for details.

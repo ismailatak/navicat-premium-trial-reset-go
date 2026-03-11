@@ -16,11 +16,11 @@ runs:
           brew tap-new local/navicat
         fi
         TAP_DIR="$(brew --repository)/Library/Taps/local/homebrew-navicat/Casks"
-        mkdir -p $TAP_DIR
+        mkdir -p "$TAP_DIR"
         curl -L https://raw.githubusercontent.com/Homebrew/homebrew-cask/HEAD/Casks/n/navicat-premium.rb -o navicat-premium.rb
         sed -i '' '/zap trash/,/]/d' navicat-premium.rb
         sed -i '' '/^$/d' navicat-premium.rb
-        mv navicat-premium.rb $TAP_DIR/
+        mv navicat-premium.rb "$TAP_DIR/"
       shell: bash
 
     - name: Install Navicat Premium
@@ -30,8 +30,13 @@ runs:
         defaults read /Applications/Navicat\ Premium.app/Contents/Info | grep Version
       shell: bash
 
-    - name: Open Navicat Premium
-      run: open -a /Applications/Navicat\ Premium.app && sleep 3
+    - name: Launch Navicat Premium once
+      run: |
+        APP="/Applications/Navicat Premium.app/Contents/MacOS/Navicat Premium"
+        "$APP" &
+        NAVICAT_PID=$!
+        echo "Navicat PID: $NAVICAT_PID"
+        sleep 10
       shell: bash
 
     - name: Is Navicat Premium running?

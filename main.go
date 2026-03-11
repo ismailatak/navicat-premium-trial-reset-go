@@ -55,6 +55,7 @@ func main() {
 		fmt.Scanln()
 
 		if isRunning("Navicat Premium") {
+			fmt.Println("")
 			fmt.Println("Closing Navicat Premium...")
 			fmt.Println("")
 
