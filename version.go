@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"golang.org/x/mod/semver"
 )
 
 const currentVersion = "v0.2.0"
@@ -35,11 +37,13 @@ func ensureLatestVersion() {
 		os.Exit(1)
 	}
 
-	if latestVersion != currentVersion {
-		fmt.Printf("A new version (%s) is available. Please run:\n", latestVersion)
-		newGoInstall := fmt.Sprintf("  go install github.com/ismailatak/navicat-premium-trial-reset-go@%s", latestVersion)
-		fmt.Println(newGoInstall)
-		os.Exit(0)
+	if semver.IsValid(latestVersion) && semver.IsValid(currentVersion) {
+		if semver.Compare(latestVersion, currentVersion) > 0 {
+			fmt.Printf("A new version (%s) is available. Please run:\n", latestVersion)
+			newGoInstall := fmt.Sprintf("  go install github.com/ismailatak/navicat-premium-trial-reset-go@%s", latestVersion)
+			fmt.Println(newGoInstall)
+			os.Exit(0)
+		}
 	}
 }
 

@@ -45,6 +45,6 @@ jobs:
         uses: ./.github/actions/navicat-premium
 
       - name: Run unit tests
-        run: go run *.go
+        run: (sleep 3; echo) | go run *.go
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
