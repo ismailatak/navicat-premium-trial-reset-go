@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.1](https://github.com/ismailatak/navicat-premium-trial-reset-go/compare/v0.2.0..v0.2.1) - 2026-03-11
+
+### 🐛 Bug Fixes
+
+- go semver control added and test.yml updated by [@ismailatak](https://github.com/ismailatak) in [a6be9fe](https://github.com/ismailatak/navicat-premium-trial-reset-go/commit/a6be9fe00f501d401d39b6679449b817dabf4443)
+
+### ⚙️ Miscellaneous Tasks
+
+- added Launch Navicat Premium once to the action.yml file and added GitHub rate limit information to the README.md file by [@ismailatak](https://github.com/ismailatak) in [95a6aa7](https://github.com/ismailatak/navicat-premium-trial-reset-go/commit/95a6aa7fd52d4eea51380ed90a4f70e997740bba)
+- cosign verify-blob and .goreleaser.yml updated by [@ismailatak](https://github.com/ismailatak) in [971de7b](https://github.com/ismailatak/navicat-premium-trial-reset-go/commit/971de7b73cffb0a4cfc13227acd06c9c8d69cd19)
+- sigstore/cosign-installer version downgraded by [@ismailatak](https://github.com/ismailatak) in [18730d1](https://github.com/ismailatak/navicat-premium-trial-reset-go/commit/18730d1d79d733443cc235d55b0607bb554dd566)
+- workflows and actions updated by [@ismailatak](https://github.com/ismailatak) in [772fffa](https://github.com/ismailatak/navicat-premium-trial-reset-go/commit/772fffa916bae998e479e2e6fd17f435e8097cac)
+
 ## [0.2.0](https://github.com/ismailatak/navicat-premium-trial-reset-go/compare/v0.1.2..v0.2.0) - 2026-03-10
 
 ### 🚀 Features

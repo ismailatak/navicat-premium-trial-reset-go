@@ -10,7 +10,7 @@ import (
 	"golang.org/x/mod/semver"
 )
 
-const currentVersion = "v0.2.0"
+const currentVersion = "v0.2.1"
 const releasesURL = "https://api.github.com/repos/ismailatak/navicat-premium-trial-reset-go/releases"
 const releaseLatestURL = releasesURL + "/latest"
 
