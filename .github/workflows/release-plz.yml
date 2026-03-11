@@ -24,20 +24,20 @@ jobs:
             runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
           token: ${{ secrets.ISO_GH_CLI_TOKEN }}
 
       - name: Install Go
-        uses: actions/setup-go@v5.2.0
+        uses: actions/setup-go@v6.3.0
         with:
           go-version-file: go.mod
           cache-dependency-path: go.sum
 
       - name: Setup gpg
         id: gpg
-        uses: crazy-max/ghaction-import-gpg@v6.2.0
+        uses: crazy-max/ghaction-import-gpg@v7.0.0
         with:
           gpg_private_key: ${{ secrets.ISO_GPG_KEY }}
           passphrase: ${{ secrets.ISO_GPG_PWD }}
@@ -46,7 +46,7 @@ jobs:
           git_tag_gpgsign: true
 
       - name: Install git-cliff
-        uses: taiki-e/install-action@v2.47.5
+        uses: taiki-e/install-action@v2.68.26
         with:
           tool: git-cliff
 

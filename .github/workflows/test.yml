@@ -33,10 +33,10 @@ jobs:
             runs-on: macos-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v6.0.2
 
       - name: Install Go
-        uses: actions/setup-go@v5.2.0
+        uses: actions/setup-go@v6.3.0
         with:
           go-version-file: go.mod
           cache-dependency-path: go.sum

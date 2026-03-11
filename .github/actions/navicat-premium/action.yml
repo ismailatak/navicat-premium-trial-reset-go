@@ -4,17 +4,28 @@ description: "Install and run Navicat Premium"
 runs:
   using: "composite"
   steps:
+    - name: Disable brew auto update
+      run: |
+        echo "HOMEBREW_NO_AUTO_UPDATE=1" >> $GITHUB_ENV
+        echo 'HOMEBREW_CASK_OPTS=--appdir=/Applications' >> $GITHUB_ENV
+      shell: bash
+
     - name: Setup local taps
       run: |
-        mkdir -p taps
-        curl -o taps/navicat-premium.rb https://raw.githubusercontent.com/Homebrew/homebrew-cask/HEAD/Casks/n/navicat-premium.rb
-        sed -i '' '/zap trash/,/]/d' taps/navicat-premium.rb
-        sed -i '' '/^$/d' taps/navicat-premium.rb
+        if ! brew tap | grep -q "^local/navicat$"; then
+          brew tap-new local/navicat
+        fi
+        TAP_DIR="$(brew --repository)/Library/Taps/local/homebrew-navicat/Casks"
+        mkdir -p $TAP_DIR
+        curl -L https://raw.githubusercontent.com/Homebrew/homebrew-cask/HEAD/Casks/n/navicat-premium.rb -o navicat-premium.rb
+        sed -i '' '/zap trash/,/]/d' navicat-premium.rb
+        sed -i '' '/^$/d' navicat-premium.rb
+        mv navicat-premium.rb $TAP_DIR/
       shell: bash
 
     - name: Install Navicat Premium
       run: |
-        brew install --cask $(pwd)/taps/navicat-premium.rb
+        brew install --cask local/navicat/navicat-premium
         ls -la /Applications | grep Navicat
         defaults read /Applications/Navicat\ Premium.app/Contents/Info | grep Version
       shell: bash
